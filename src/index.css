@@ -6,7 +6,22 @@
 .btn-common {
     @apply px-6 py-3 bg-[#D5FFD0] font-medium
 }
-
+.input-common{
+    @apply  px-4  py-2 border  bg-white
+}
+.input-div{
+    @apply mb-4 flex flex-col justify-center mx-2 md:mx-8
+}
+.my-divider::after{
+  content: "";
+  border-bottom: 1px solid white ;
+  padding: 0 20px;
+}
+.my-divider::before{
+    content: "";
+    border-bottom: 1px solid white ;
+    padding: 0 20px;
+  }
 
 .home {
     animation-name: hom;
