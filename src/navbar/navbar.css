@@ -1,20 +1,26 @@
 .mbl-ul {
-    @apply flex flex-col items-center justify-center gap-5 -ml-[50vw]  w-[50vw] transition-all duration-300 py-5 bg-black bg-opacity-70  text-white fixed
+    @apply flex flex-col items-center justify-center gap-5 -ml-[80vw]  w-[50vw] transition-all duration-300 py-5 bg-black bg-opacity-70  text-white fixed
 }
 
 .mbl-ul-show {
     @apply ml-0 
 }
 
+.active{
+    @apply border-b 
+}
+
 .icon{
     /* p-2 bg-[#1363DF] w-fit rounded */
-    padding: 20px;
+    padding: 7px;
+    margin: 3px;
     background-color: #1363DF;
     width:fit-content;
-    border-radius:0 0 50px 0  ;
+    border-radius: 5px ;
     color: white;
 }
 
+/* 
 .any{
     top: 0;
     left: 0;
@@ -31,7 +37,7 @@
 25%{
     left:80%;
     top:0 ;
-    /* right:0 ; */
+
 }
 50%{
     left:100%;
@@ -46,3 +52,4 @@
     left:0 ;
 }
 }
+*/

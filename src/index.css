@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 
+.btn-common {
+    @apply px-6 py-3 bg-[#D5FFD0] font-medium
+}
 
 
-
-.home{
+.home {
     animation-name: hom;
 
 }
@@ -38,4 +40,23 @@
     font-family: 'Roboto Slab', serif;
     /* font-family: 'Ubuntu', sans-serif;
     font-family: 'Work Sans', sans-serif; */
+}
+
+.title-font {
+    font-family: 'Anton', sans-serif;
+    /* font-family: 'Bebas Neue', sans-serif; */
+    /* font-family: 'Bevan', serif; */
+    /* font-family: 'Fira Sans', sans-serif; */
+    /* font-family: 'Girassol', serif; */
+    /* font-family: 'Inter', sans-serif; */
+    /* font-family: 'Kaushan Script', cursive; */
+    /* font-family: 'Lato', sans-serif; */
+    /* font-family: 'Libre Baskerville', serif; */
+    /* font-family: 'Merriweather', serif; */
+    /* font-family: 'Playfair Display', serif; */
+    /* font-family: 'Poppins', sans-serif; */
+    /* font-family: 'Rampart One', sans-serif; */
+    /* font-family: 'Roboto Slab', serif; */
+    /* font-family: 'Ubuntu', sans-serif; */
+    /* font-family: 'Work Sans', sans-serif;  */
 }

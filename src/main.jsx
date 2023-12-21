@@ -1,12 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import './hover-min.css'
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import Layout from './layout/Layout';
 import Home from './Pages/Home/Home';
+import Login from './Pages/login/Login';
+import Register from './Pages/Register/Register';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +19,14 @@ const router = createBrowserRouter([
       {
         path:'/',
         element:<Home></Home>
+      },
+      {
+        path:'/login',
+        element:<Login></Login>
+      },
+      {
+        path:'/register',
+        element:<Register></Register>
       }
     ]
   },

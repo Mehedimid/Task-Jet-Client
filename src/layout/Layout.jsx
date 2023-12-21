@@ -6,7 +6,6 @@ function Layout(props) {
     return (
         <div>
 
-            <Navbar></Navbar>
             <Outlet></Outlet>
           
         </div>
