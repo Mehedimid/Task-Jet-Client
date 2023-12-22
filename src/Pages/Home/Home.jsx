@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../navbar/Navbar";
 import Header from "./header/Header";
+import Section2 from "./Section2";
 
 function Home(props) {
   return (
@@ -9,6 +10,9 @@ function Home(props) {
         <Navbar></Navbar>
       </div>
       <Header></Header>
+
+      <div><Section2></Section2></div>
+
     </div>
   );
 }

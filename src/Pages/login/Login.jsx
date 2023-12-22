@@ -2,10 +2,13 @@ import React from "react";
 import Navbar from "../../navbar/Navbar";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import Google from "../../shared components/Google";
 import Facebook from "../../shared components/social login/Facebook";
+import Google from "../../shared components/social login/Google";
+import useAuth from "../../hooks/useAuth";
 
 function Login(props) {
+  const { logInUser } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -14,16 +17,26 @@ function Login(props) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    logInUser(data.email, data.password)
+      .then((result) => {
+        Swal.fire({
+          position: "top-start",
+          icon: "success",
+          title: "Successfully Register!!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => console.err(err.message));
   };
 
   return (
-    <div className=" ">
+    <div className="min-h-screen bg-[#D5FFD0]">
       <div className="bg-black ">
         <Navbar />
       </div>
 
-      <div className="py-10 bg-[#D5FFD0] ">
+      <div className="py-12 mt-10">
         <div className=" bg-[#0C356A] py-5 w-11/12 md:w-1/2 lg:w-1/3 mx-auto relative">
           <h2 className="text-center text-[#D5FFD0] text-2xl font-semibold">
             Sign In
@@ -35,17 +48,16 @@ function Login(props) {
               Sign up here
             </Link>
           </p>
-          
+
           {/* social login components  */}
           <div className="flex items-center justify-center gap-10 mb-5">
             <Google /> <Facebook />
           </div>
 
-          <div className="my-divider text-white text-center mb-5">OR</div>
+          <div className="divider divider-warning text-white">Or</div>
 
           {/* form start here  */}
           <form onSubmit={handleSubmit(onSubmit)}>
-
             {/* Email input */}
             <div className="input-div">
               <input
