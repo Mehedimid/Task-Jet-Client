@@ -1,10 +1,11 @@
 import React from "react";
 import task from "../../assets/task.png"
+import { Link } from "react-router-dom";
 
 function Section2(props) {
   return (
     <div className="w-10/12 mx-auto my-10">
-      <div className="flex bg-[#D5FFD] items-center justify-center gap-8">
+      <div className="flex flex-col-reverse md:flex-row bg-[#D5FFD] items-center justify-center gap-8">
         {/* image  */}
         <img src={task} className="md:w-1/2" />
         
@@ -26,7 +27,7 @@ function Section2(props) {
           </ul>
 
           <div className="my-3">
-            <button className="btn-common hvr-bounce-to-top border border-gray-700">Start Task</button>
+            <Link to='/dashboard' className="btn-common hvr-bounce-to-top border border-gray-700">Start Task</Link>
           </div>
         </div>
       </div>

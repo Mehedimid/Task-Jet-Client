@@ -1,16 +1,19 @@
 import Swal from "sweetalert2"
 import google from "../../assets/google.png"
 import useAuth from "../../hooks/useAuth"
-import { useNavigate } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 
 function Google(props) {
     const {googleLogin} = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+    const newLocation = location.state?.from || "/";
+  
 
     const handleCreateUser = () => {
         googleLogin()
         .then(result => {
-         navigate('/')
+         navigate(newLocation)
          Swal.fire({
            position: "top-end",
            icon: "success",

@@ -1,6 +1,6 @@
 import React from "react";
 import Navbar from "../../navbar/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Facebook from "../../shared components/social login/Facebook";
 import Google from "../../shared components/social login/Google";
@@ -8,6 +8,10 @@ import useAuth from "../../hooks/useAuth";
 
 function Login(props) {
   const { logInUser } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation()
+  const newLocation = location.state?.from || "/";
+
 
   const {
     register,
@@ -19,6 +23,7 @@ function Login(props) {
   const onSubmit = (data) => {
     logInUser(data.email, data.password)
       .then((result) => {
+        navigate(newLocation)
         Swal.fire({
           position: "top-start",
           icon: "success",

@@ -17,7 +17,7 @@ function Header(props) {
           </p>
 
           <div>
-            <Link to='/register' className="btn-common hover:text-[#D5FFD0] hover:bg-[#279EFF] transition-all duration-300">Let's Explore</Link>
+            <Link to='/Dashboard' className="btn-common hover:text-[#D5FFD0] hover:bg-[#279EFF] transition-all duration-300">Let's Explore</Link>
           </div>
             
         </div>

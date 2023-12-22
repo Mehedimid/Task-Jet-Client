@@ -10,6 +10,11 @@ import Register from "./Pages/Register/Register";
 import About from "./Pages/others/About";
 import Contact from "./Pages/others/Contact";
 import AuthProvider from "./AuthProvider/AuthProvider";
+import Dashboard from "./layout/Dashboard";
+import AddTask from "./Dashboard/AddTask";
+import DashHome from "./Dashboard/DashHome";
+import PrivateRoute from "./Private route/PrivateRoute";
+import MyTask from "./Dashboard/MyTask";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +40,24 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    children: [
+      {
+        path:'/dashboard',
+        element:<DashHome></DashHome>
+      },
+      {
+        path: "/dashboard/:email/my-task",
+        element: <MyTask></MyTask>,
+      },
+      {
+        path: "/dashboard/:email/add-task",
+        element: <AddTask></AddTask>,
       },
     ],
   },

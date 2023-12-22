@@ -43,7 +43,7 @@ function Navbar(props) {
           ""
         )
       ) : (
-        <NavLink className="text-[#D5FFD0]" to="/dashboard">
+        <NavLink className="text-[#D5FFD0]" to={`/dashboard`}>
           Dashboard
         </NavLink>
       )}
@@ -72,7 +72,7 @@ function Navbar(props) {
             )}
           </div>
           <div>
-            <h3 className="text-[#279EFF] text-2xl">TaskJET</h3>
+            <Link to='/' className="text-[#279EFF] text-2xl">TaskJET</Link>
           </div>
           {!user ? (
             loading ? (
@@ -100,7 +100,7 @@ function Navbar(props) {
       <div className=" hidden lg:block  shadow relative ">
         <div className="flex text-white justify-center gap-20 items-center py-5">
           <div>
-            <h3 className="text-[#279EFF] text-2xl">TaskJET</h3>
+            <Link to='/' className="text-[#279EFF] text-2xl">TaskJET</Link>
           </div>
 
           <ul className="flex gap-16 text-lg">{navlinks}</ul>
