@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import useAuth from "../hooks/useAuth";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function AddTask(props) {
+  const { user } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+
+  const email = user?.email;
+
   const {
     register,
     handleSubmit,
@@ -10,8 +20,26 @@ function AddTask(props) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-    console.log("Priority value:", data.priorityValue);
+    const date = new Date(data.deadline).toLocaleDateString("en-us", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const obj = {
+      title: data.title,
+      description: data.description,
+      priority: data.priority,
+      deadline: date,
+      email: email,
+    };
+
+    axiosPublic.post(`/tasks`, obj).then((res) => {
+      console.log(res.data);
+      reset();
+      Swal.fire("Task Added in Todo List!");
+      navigate(`/dashboard/${email}/my-task`);
+    });
   };
 
   return (
@@ -28,10 +56,14 @@ function AddTask(props) {
               <input
                 {...register("title", {
                   required: "Title is required",
+                  maxLength: {
+                    value: 8,
+                    message: "Title should not exceed 8 characters",
+                  },
                 })}
                 type="text"
                 id="title"
-                placeholder="Enter task title"
+                placeholder="Ex: Task 1"
                 className="input input-bordered  w-full "
               />
               {errors.title && (
@@ -44,12 +76,21 @@ function AddTask(props) {
               <label htmlFor="description" className="block text-black">
                 Description
               </label>
-              <textarea
-                {...register("description")}
+              <input
+                {...register("description", {
+                  required: "Title is required",
+                  maxLength: {
+                    value: 30,
+                    message: "Description should not exceed 30 characters",
+                  },
+                })}
                 id="description"
-                placeholder="Enter task description"
-                className="input input-bordered  w-full "
+                placeholder="Ex: Finish math home works"
+                className="input input-bordered w-full "
               />
+              {errors.title && (
+                <p className="text-red-500">{errors.description.message}</p>
+              )}
             </div>
 
             {/* Priority input */}
@@ -92,3 +133,16 @@ function AddTask(props) {
 }
 
 export default AddTask;
+
+// const taskCollection = client.db("taskJETDB").collection("tasks");
+
+// // task api >>>
+// app.post(`/tasks/:email`, async (req, res) => {
+//     try{
+//         const task = req.body;
+//         console.log(task)
+//         const result = await taskCollection.insertOne(task);
+//         res.send(result)
+//     }
+//     catch (err) {console.log(err)}
+// })

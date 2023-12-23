@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 function Section2(props) {
   return (
-    <div className="w-10/12 mx-auto my-10">
+    <div className=" mx-auto my-10">
       <div className="flex flex-col-reverse md:flex-row bg-[#D5FFD] items-center justify-center gap-8">
         {/* image  */}
         <img src={task} className="md:w-1/2" />
         
 
         {/* content  */}
-        <div className="md:w-1/2">
+        <div className="md:w-1/2 text-center md:text-start">
             <h1 className="text-3xl md:text-5xl title-font text-[#0C356A]">Who Can Manage Task?</h1>
             <p className=" mt-2 mb-4">
             {" "}
@@ -27,7 +27,7 @@ function Section2(props) {
           </ul>
 
           <div className="my-3">
-            <Link to='/dashboard' className="btn-common hvr-bounce-to-top border border-gray-700">Start Task</Link>
+            <Link to='/dashboard' className="home-btn common-btn border-2 border-gray-600">Start Task</Link>
           </div>
         </div>
       </div>

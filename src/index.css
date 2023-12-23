@@ -6,31 +6,38 @@
 .btn-common {
     @apply px-6 py-3 bg-[#D5FFD0] font-medium
 }
-.input-common{
-    @apply  px-4  py-2 border  bg-white
+
+.input-common {
+    @apply px-4 py-2 border bg-white
 }
-.input-div{
+
+.input-div {
     @apply mb-4 flex flex-col justify-center mx-2 md:mx-8
 }
-.my-divider::after{
-  content: "";
-  border-bottom: 1px solid white ;
-  padding: 0 20px;
-}
-.my-divider::before{
+
+.my-divider::after {
     content: "";
-    border-bottom: 1px solid white ;
+    border-bottom: 1px solid white;
     padding: 0 20px;
-  }
+}
+
+.my-divider::before {
+    content: "";
+    border-bottom: 1px solid white;
+    padding: 0 20px;
+}
 
 .home {
     animation-name: hom;
-
 }
 
-/* @keyframes hom {
-    from 
-} */
+.sizing{
+    @apply w-11/12 lg:w-10/12 mx-auto
+}
+
+.home-btn {
+    @apply border px-6 py-3 bg-[#D5FFD0] hover:text-[#D5FFD0] hover:bg-[#279EFF] transition-all duration-300
+}
 
 
 

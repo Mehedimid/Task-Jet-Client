@@ -8,7 +8,7 @@ function Dashboard(props) {
     return (
         <div>
             <DashNav></DashNav>
-            <Outlet></Outlet>
+           <div className="sizing"><Outlet></Outlet></div>
             <Footer></Footer>
         </div>
     );

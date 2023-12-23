@@ -15,6 +15,7 @@ import AddTask from "./Dashboard/AddTask";
 import DashHome from "./Dashboard/DashHome";
 import PrivateRoute from "./Private route/PrivateRoute";
 import MyTask from "./Dashboard/MyTask";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 const router = createBrowserRouter([
   {
@@ -59,14 +60,18 @@ const router = createBrowserRouter([
         path: "/dashboard/:email/add-task",
         element: <AddTask></AddTask>,
       },
+      
     ],
   },
 ]);
 
+const queryClient = new QueryClient()
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
       <RouterProvider router={router} />
-    </AuthProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

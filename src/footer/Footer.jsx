@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Footer(props) {
   return (
     <div className="bg-black">
-      <footer className="footer p-10 w-10/12 mx-auto text-[#D5FFD0]">
+      <footer className="footer p-10 w-full mx-auto text-[#D5FFD0]">
         <aside>
 
           <p>

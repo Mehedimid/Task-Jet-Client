@@ -8,10 +8,10 @@ function DashHome(props) {
 
   return (
 
-      <div className="w-10/12 mx-auto my-10">
+      <div className="w-full mx-auto my-10">
         <div className="flex flex-col md:flex-row bg-[#D5FFD] items-center justify-center gap-8">
           {/* image  */}
-          <img src={task} className="md:w-1/2" />
+          <img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*ezo-thM7hpWVl4MAyEea8A.png" className="md:w-1/2" />
 
           {/* content  */}
           <div className="md:w-1/2">
