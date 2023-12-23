@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import Loading from "../../shared components/Loading";
 import useTodos from "../../hooks/useTodos";
 import { CiEdit } from "react-icons/ci";
+import { FaEdit } from "react-icons/fa";
 
 function Todo(props) {
   const { user } = useAuth();
@@ -12,10 +13,9 @@ function Todo(props) {
     return <Loading></Loading>;
   }
 
-  const handleUpdate = id => {
-     console.log(id)
-  }
-
+  const handleUpdate = (id) => {
+    console.log(id);
+  };
 
   return (
     <>
@@ -26,10 +26,10 @@ function Todo(props) {
 
         <div>
           {todos?.map((task) => {
-            if (task?.status!=="on going" || task?.status!=="completed") {
+            if (task?.status !== "on going" || task?.status !== "completed") {
               return (
                 <div key={task?.id}>
-                  <div className="bg-[#D5FFD0] w-full border-2 shadow-xl mb-5">
+                  <div className="bg-[#D5FFD0] w-full border-2 shadow-xl mb-5 md:px-2">
                     <h3 className="bg-[#0C356A] text-white text-center text-xl font-semibold py-3 ">
                       Deadline : <span>{task?.deadline}</span>
                     </h3>
@@ -37,16 +37,21 @@ function Todo(props) {
                       <p className="text-[#0C356A] font-bold text-lg">
                         {task?.title}{" "}
                       </p>
-                      <div className="badge badge-neutral">
+                      <div className="badge bg-[#40F8FF] font-semibold">
                         {task?.priority}
                       </div>
                     </div>
                     <p className="text-center font-bold">{task?.description}</p>
                     <div className="flex justify-center items-center my-2 gap-5">
-                      <button className="hvr-bounce-to-top border-[#0C356A] border px-2 py1 bg-white shadow-xl rounded">
+                      <button className="hvr-bounce-to-top border-[#0C356A] border px-2 py1 bg-white shadow-xl rounded font-medium">
                         On Going{" "}
                       </button>
-                      <CiEdit className="text-xl" onClick={()=>handleUpdate(task?._id)} />
+                      <button>
+                        <FaEdit
+                          className="text-xl text-[#40F8FF] font-bold"
+                          onClick={() => handleUpdate(task?._id)}
+                        />
+                      </button>
                       {/* <button className="hvr-bounce-to-top border-[#0C356A] border px-2 py1 bg-white shadow-xl rounded">
                         Completed
                       </button> */}

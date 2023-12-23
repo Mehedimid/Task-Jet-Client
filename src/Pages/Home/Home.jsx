@@ -11,7 +11,7 @@ function Home(props) {
       </div>
       <Header></Header>
 
-      <div><Section2></Section2></div>
+      <div className="sizing"><Section2></Section2></div>
 
     </div>
   );
