@@ -31,6 +31,7 @@ function AddTask(props) {
       description: data.description,
       priority: data.priority,
       deadline: date,
+      status:'Todo',
       email: email,
     };
 
@@ -57,17 +58,17 @@ function AddTask(props) {
                 {...register("title", {
                   required: "Title is required",
                   maxLength: {
-                    value: 8,
-                    message: "Title should not exceed 8 characters",
+                    value: 30,
+                    message: "Title should not exceed 30 characters",
                   },
                 })}
                 type="text"
                 id="title"
-                placeholder="Ex: Task 1"
+                placeholder="Ex: Task Name"
                 className="input input-bordered  w-full "
               />
               {errors.title && (
-                <p className="text-red-500">{errors.title.message}</p>
+                <p className="text-red-500">{errors?.title?.message}</p>
               )}
             </div>
 
@@ -80,8 +81,8 @@ function AddTask(props) {
                 {...register("description", {
                   required: "Title is required",
                   maxLength: {
-                    value: 30,
-                    message: "Description should not exceed 30 characters",
+                    value: 70,
+                    message: "Description should not exceed 70 characters",
                   },
                 })}
                 id="description"
@@ -89,7 +90,7 @@ function AddTask(props) {
                 className="input input-bordered w-full "
               />
               {errors.title && (
-                <p className="text-red-500">{errors.description.message}</p>
+                <p className="text-red-500">{errors?.description?.message}</p>
               )}
             </div>
 

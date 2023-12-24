@@ -1,21 +1,59 @@
 import React from "react";
-import useAuth from "../../hooks/useAuth";
 import Loading from "../../shared components/Loading";
 import useTodos from "../../hooks/useTodos";
-import { CiEdit } from "react-icons/ci";
-import { FaEdit } from "react-icons/fa";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import TaskCard from "../../shared components/TaskCard";
 
 function Todo(props) {
-  const { user } = useAuth();
-  const { todos, isPending } = useTodos();
+  const { todos, isPending, refetch } = useTodos();
+  const axiosPublic = useAxiosPublic();
 
   if (isPending) {
     return <Loading></Loading>;
   }
 
-  const handleUpdate = (id) => {
-    console.log(id);
+  const handleOngoing = async (id) => {
+    const res = await axiosPublic.patch(`/tasks/${id}`)
+    console.log(res.data)
+    if(res.data.modifiedCount>0){
+      refetch()
+      Swal.fire({
+        title: "On Going!",
+        text: "Now This Task is On Going.",
+        icon: "success",
+      });
+    }
   };
+ 
+  // delete a task >>>
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const res = await axiosPublic.delete(`tasks/${id}`);
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "Your Todo has been deleted.",
+            icon: "success",
+          });
+          refetch()
+        }
+      }
+    });
+  };
+
+  const handleUpdate = id => {
+    console.log(id)
+  }
 
   return (
     <>
@@ -26,38 +64,10 @@ function Todo(props) {
 
         <div>
           {todos?.map((task) => {
-            if (task?.status !== "on going" || task?.status !== "completed") {
+            if (task?.status == "Todo") {
               return (
-                <div key={task?.id}>
-                  <div className="bg-[#D5FFD0] w-full border-2 shadow-xl mb-5 md:px-2">
-                    <h3 className="bg-[#0C356A] text-white text-center text-xl font-semibold py-3 ">
-                      Deadline : <span>{task?.deadline}</span>
-                    </h3>
-                    <div className="flex justify-center gap-7 my-2 mx-2 items-center">
-                      <p className="text-[#0C356A] font-bold text-lg">
-                        {task?.title}{" "}
-                      </p>
-                      <div className="badge bg-[#40F8FF] font-semibold">
-                        {task?.priority}
-                      </div>
-                    </div>
-                    <p className="text-center font-bold">{task?.description}</p>
-                    <div className="flex justify-center items-center my-2 gap-5">
-                      <button className="hvr-bounce-to-top border-[#0C356A] border px-2 py1 bg-white shadow-xl rounded font-medium">
-                        On Going{" "}
-                      </button>
-                      <button>
-                        <FaEdit
-                          className="text-xl text-[#40F8FF] font-bold"
-                          onClick={() => handleUpdate(task?._id)}
-                        />
-                      </button>
-                      {/* <button className="hvr-bounce-to-top border-[#0C356A] border px-2 py1 bg-white shadow-xl rounded">
-                        Completed
-                      </button> */}
-                    </div>
-                  </div>
-                </div>
+                <TaskCard key={task?.id} task={task} handleDelete={handleDelete} handleOngoing={handleOngoing} handleUpdate={handleUpdate}>
+                </TaskCard>
               );
             }
           })}

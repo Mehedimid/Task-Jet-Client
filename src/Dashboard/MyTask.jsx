@@ -1,7 +1,7 @@
 import React from "react";
-import Todo from "./my task compos/Todo";
 import OnGoing from "./my task compos/OnGoing";
 import Completed from "./my task compos/Completed";
+import Todo from "./my task compos/Todo";
 
 function MyTask(props) {
   return (

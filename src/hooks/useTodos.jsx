@@ -14,7 +14,7 @@ function useTodos(props) {
     } = useQuery({
       queryKey: ["todos", user?.email],
       queryFn: async () => {
-        const res = await axiosPublic.get("/tasks");
+        const res = await axiosPublic.get(`tasks?email=${user?.email}`);
         return res.data;
       },
     });
